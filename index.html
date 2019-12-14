@@ -1,0 +1,175 @@
+<html>
+<head>
+<link href="css/style.css" rel="stylesheet"/>
+<style>
+	
+body {
+margin:0;
+padding:0;
+overflow: hidden;
+}
+canvas {
+margin:auto;
+}
+</style>
+</head>
+
+<body style="background-color: #B38F7F">
+
+        
+<div id="main">
+<div id="player">
+<div id="songTitle"></div>
+
+<div id="buttons">
+<button id="pre" onclick="pre()"> <<
+</button>
+
+<button id="play" onclick="playOrPauseSong()"><img src="Images/Play.png" height="90%" width="90%">
+</button>
+
+<img src="Images/dictionary.jpg" style="width:100%; margin-top: 220px;" onclick="dictionary()">
+
+<button id="next" onclick="next()"> >>
+</button>
+</div>
+                
+<div id="seek-bar">
+<div id="fill"></div>
+<div id="handle"></div>
+</div>
+</div>
+</div>
+
+
+<div class = "style">
+<img src="Images/1.jpg" style="width:26%; margin-left: 40px; margin-top: 70px;" onclick="Video1()">
+<img src="Images/2.jpg" style="width:26%; margin-left: 90px; margin-top: 50px;" onclick="Video2()">
+<img src="Images/3.jpg" style="width:27%; margin-left: 40px; margin-top: 50px;" onclick="Video3()">
+</div>
+
+<div class = "style2">
+<img src="Images/4.jpg" style="width:75%; margin-left: 50px; margin-top: 70px;" onclick="Video4()">
+<img src="Images/5.jpg" style="width:75%; margin-left: 0px; margin-top: 50px;" onclick="Video5()">
+<img src="Images/6.jpg" style="width:75%; margin-left: 50px; margin-top: 50px;" onclick="Video6()">
+</div>
+
+<audio id="song1" src="Lebanon Hanover.mp3", id="song2" src="Joy Division.mp3", id="song3" src="Bauhaus.mp3", id="song4" src="Front 242.mp3", id="song5" src="Interpol.mp3", id="song6" src="System Of A Down.mp3">
+</audio>
+
+<script type="text/javascript">
+    
+var songs = ["Lebanon Hanover.mp3","Joy Division.mp3","Bauhaus.mp3","Front 242.mp3","Interpol.mp3","System Of A Down.mp3"];
+var a = "Lebanon Hanover.mp3";
+var songTitle = document.getElementById("songTitle");
+var fillBar = document.getElementById("fill");
+        
+var song = new Audio();
+var currentSong = 0;
+var checkThis;    
+var translation = true;
+        
+window.onload = playSong;  
+        
+function playSong(){            
+song.src = songs[currentSong];  
+songTitle.textContent = songs[currentSong]; 
+song.play(); 
+if(translation == true)
+	setInterval (playVideo, 1000);
+translation = false;  
+}
+
+function playOrPauseSong(){
+if(song.paused){
+song.play();
+}
+
+else{
+song.pause();
+}
+}
+      
+function pause(){
+if(song.p)
+song.pause();
+}
+
+song.addEventListener('timeupdate',function(){ 
+var position = song.currentTime / song.duration;
+fillBar.style.width = position * 100 +'%';
+});
+        
+    
+function next(){          
+currentSong++;
+if(currentSong > 5){
+currentSong = 0;
+}
+playSong();    
+console.log(currentSong);  
+}
+    
+function pre(){
+currentSong--;
+if(currentSong < 0){
+currentSong = 5;
+}
+playSong();
+}
+        
+function Video1() {
+window.open("https://www.youtube.com/watch?v=WPw7nlluRdc","width=500, height=500");
+}
+
+function Video2() {
+window.open("https://www.youtube.com/watch?v=Jcjmp0WUOlk","width=500, height=500");
+}
+
+function Video3() {
+window.open("https://www.youtube.com/watch?v=Qxqq5vahHKk","width=500, height=500");
+}
+
+function Video4() {
+window.open("https://www.youtube.com/watch?v=vRpeVcjMvNo","width=500, height=500");
+}
+
+function Video5() {
+window.open("https://www.youtube.com/watch?v=dkpgz3uQ58U","width=500, height=500");
+}
+
+function Video6() {
+window.open("https://www.youtube.com/watch?v=DnGdoEa1tPg","width=500, height=500");
+}
+
+function dictionary() {
+window.open("https://dictionary.cambridge.org/ru/%D1%81%D0%BB%D0%BE%D0%B2%D0%B0%D1%80%D1%8C/%D0%B0%D0%BD%D0%B3%D0%BB%D0%BE-%D1%80%D1%83%D1%81%D1%81%D0%BA%D0%B8%D0%B9/");
+}
+    
+
+
+function playVideo() {
+	console.log(song.currentTime);
+if (song.currentTime >= 3) {
+console.log("window");
+if(currentSong == 0)
+	firstVideo = window.open("https://www.amalgama-lab.com/songs/l/lebanon_hanover/gallowdance.html", '', 'width=640px, height=360px, location=0');
+if(currentSong == 1)
+	firstVideo = window.open("https://www.amalgama-lab.com/songs/j/joy_division/she_s_lost_control.html");
+if(currentSong == 2)
+  firstVideo = window.open("https://textypesen.com/bauhaus/shes-in-parties/");
+if(currentSong == 3)
+  firstVideo = window.open("https://textypesen.com/front-242/operating-tracks/");
+if(currentSong == 4)
+  firstVideo = window.open("https://www.amalgama-lab.com/songs/i/interpol/evil.html");
+if(currentSong == 5)
+  firstVideo = window.open("https://www.amalgama-lab.com/songs/s/system_of_a_down/lonely_day.html");
+}
+}
+
+    
+    
+</script>
+    
+</body>  
+</html>
